@@ -3,10 +3,6 @@ title: "Commands"
 description: "Reference for Donut Orders player and admin commands."
 ---
 
-# Donut Orders Commands
-
-Donut Orders registers a player-facing root command and a separate admin root command.
-
 ## Player Commands
 
 | Command | Permission | Description |
@@ -21,13 +17,3 @@ Donut Orders registers a player-facing root command and a separate admin root co
 | `/ordersadmin` | `donutorders.admin` | Opens the admin home menu. Player-only; if run from console, the plugin returns the `player-only` message. Example: `/ordersadmin`. |
 | `/ordersadmin reload` | `donutorders.admin` | Reloads the plugin configuration and messages. Can be run by player or console. Example: `/ordersadmin reload`. Use a full restart if you changed dependencies or server platform details. |
 | `/ordersadmin filter additem <filterId> <entryId>` | `donutorders.admin` | Player-only. Saves the item in the sender's main hand into the target filter as a custom exact-match entry. Example: `/ordersadmin filter additem books mending-book`. `entryId` is normalized to lowercase kebab-case, the command rejects the `all` filter, fails if the player's hand is empty, and on success writes the new entry back to `filters.yml`. |
-
-## Permissions
-
-- `donutorders.admin`: grants access to every `ordersadmin` subcommand
-
-## Operational Notes
-
-- `/orders` is player-only because it opens a GUI.
-- `/ordersadmin` is also effectively player-only for its default action.
-- Reloading is safe for config edits, but if you changed dependencies or server platform details, do a full restart instead.

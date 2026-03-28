@@ -3,9 +3,7 @@ title: "Commands"
 description: "Reference for Donut Crates commands, aliases, and permission nodes."
 ---
 
-# Donut Crates Commands
-
-Root aliases: `/donutcrates`, `/crates`
+Aliases: `/donutcrates`, `/crates`
 
 ## Core Commands
 
@@ -31,21 +29,3 @@ Root aliases: `/donutcrates`, `/crates`
 | Command | Permission | Description |
 | --- | --- | --- |
 | `/crates reload` | `donutcrates.command.reload` | Reloads plugin configuration and crate definitions. Example: `/crates reload`. |
-
-## Permissions Summary
-
-- `donutcrates.command.open`
-- `donutcrates.command.assign`
-- `donutcrates.command.unassign`
-- `donutcrates.command.keys.inspect`
-- `donutcrates.command.keys.set`
-- `donutcrates.command.keys.give`
-- `donutcrates.command.keys.take`
-- `donutcrates.command.keys.giveall`
-- `donutcrates.command.reload`
-
-All are declared with `default: op` in `plugin.yml`.
-
-## Operational Notes
-
-- Key operations run asynchronously against the repository layer, so use them for bulk updates instead of editing storage by hand.

@@ -3,8 +3,6 @@ title: "Commands"
 description: "Reference for Donut Bounty player and admin commands."
 ---
 
-# Donut Bounty Commands
-
 ## Player Commands
 
 | Command | Permission | Description |
@@ -23,15 +21,3 @@ description: "Reference for Donut Bounty player and admin commands."
 | `/bountyadmin add <player> <amount>` | `donutbounty.admin` | Adds to the player's current bounty. Can be run by player or console. Example: `/bountyadmin add ShadowX 5000`. The amount parser rejects zero or negative values. |
 | `/bountyadmin remove <player> <amount>` | `donutbounty.admin` | Subtracts from the player's current bounty. Can be run by player or console. Example: `/bountyadmin remove ShadowX 5000`. The amount parser rejects zero or negative values. |
 | `/bountyadmin reset` | `donutbounty.admin` | Resets all bounties. Can be run by player or console. Example: `/bountyadmin reset`. High-impact admin action. |
-
-## Permissions
-
-- `donutbounty.admin`: grants all `bountyadmin` actions
-
-Declared in `plugin.yml` with `default: op`.
-
-## Operational Notes
-
-- `/bounty` opens a GUI and is player-only.
-- `/bountyadmin` default behavior is also player-only, but the non-default subcommands use `CommandSender` and can be run from console.
-- The amount parser rejects zero or negative values for player placement and add/remove actions.

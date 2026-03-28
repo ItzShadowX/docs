@@ -3,9 +3,7 @@ title: "Commands"
 description: "Reference for Donut Shops player and admin commands."
 ---
 
-# Donut Shops Commands
-
-Root aliases: `/shop`, `/donutshop`, `/donutshops`
+Aliases: `/shop`, `/donutshop`, `/donutshops`
 
 ## Player Command
 
@@ -19,14 +17,3 @@ Root aliases: `/shop`, `/donutshop`, `/donutshops`
 | --- | --- | --- |
 | `/shop open <player>` | `donutshops.command.open` | Opens the main shop menu for a target player. Can be run by player or console because it accepts a `CommandSender`. Example: `/shop open ShadowX`. |
 | `/shop reload` | `donutshops.command.reload` | Reloads the plugin configuration and menus. Can be run by player or console. Example: `/shop reload`. Appropriate for menu and category edits; use a restart if you changed platform or dependency state. |
-
-## Permissions
-
-Declared in `plugin.yml` with `default: op`:
-
-- `donutshops.command.open`
-- `donutshops.command.reload`
-
-## Operational Notes
-
-- The default `/shop` action is player-only because it opens a GUI.
