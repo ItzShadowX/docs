@@ -13,18 +13,11 @@
         "tab": "Minecraft",
         "groups": [
           {
-            "group": "Overview",
-            "pages": [
-              "minecraft/index"
-            ]
-          },
-          {
             "group": "Minecraft Plugins",
             "pages": [
               {
                 "group": "Donut Orders",
                 "pages": [
-                  "minecraft/donut-orders/index",
                   "minecraft/donut-orders/setup",
                   "minecraft/donut-orders/configuration",
                   "minecraft/donut-orders/operations"
@@ -33,7 +26,6 @@
               {
                 "group": "Donut Crates",
                 "pages": [
-                  "minecraft/donut-crates/index",
                   "minecraft/donut-crates/setup",
                   "minecraft/donut-crates/configuration",
                   "minecraft/donut-crates/operations"
@@ -42,7 +34,6 @@
               {
                 "group": "Donut Shops",
                 "pages": [
-                  "minecraft/donut-shops/index",
                   "minecraft/donut-shops/setup",
                   "minecraft/donut-shops/configuration",
                   "minecraft/donut-shops/operations"
@@ -56,18 +47,11 @@
         "tab": "Hytale",
         "groups": [
           {
-            "group": "Overview",
-            "pages": [
-              "hytale/index"
-            ]
-          },
-          {
             "group": "Hytale Plugins",
             "pages": [
               {
                 "group": "Hytale Shop",
                 "pages": [
-                  "hytale/hytale-shop/index",
                   "hytale/hytale-shop/setup",
                   "hytale/hytale-shop/configuration",
                   "hytale/hytale-shop/operations"
@@ -76,7 +60,6 @@
               {
                 "group": "Player Trails",
                 "pages": [
-                  "hytale/player-trails/index",
                   "hytale/player-trails/setup",
                   "hytale/player-trails/configuration",
                   "hytale/player-trails/operations"
