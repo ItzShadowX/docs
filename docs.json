@@ -1,122 +1,92 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Primax Studios",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#F97316",
+    "light": "#FB923C",
+    "dark": "#C2410C"
   },
-  "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Overview",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "index"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Minecraft Plugins",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              {
+                "group": "Donut Orders",
+                "pages": [
+                  "minecraft/donut-orders/index",
+                  "minecraft/donut-orders/setup",
+                  "minecraft/donut-orders/configuration",
+                  "minecraft/donut-orders/operations"
+                ]
+              },
+              {
+                "group": "Donut Crates",
+                "pages": [
+                  "minecraft/donut-crates/index",
+                  "minecraft/donut-crates/setup",
+                  "minecraft/donut-crates/configuration",
+                  "minecraft/donut-crates/operations"
+                ]
+              },
+              {
+                "group": "Donut Shops",
+                "pages": [
+                  "minecraft/donut-shops/index",
+                  "minecraft/donut-shops/setup",
+                  "minecraft/donut-shops/configuration",
+                  "minecraft/donut-shops/operations"
+                ]
+              }
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Hytale Plugins",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              {
+                "group": "Hytale Shop",
+                "pages": [
+                  "hytale/hytale-shop/index",
+                  "hytale/hytale-shop/setup",
+                  "hytale/hytale-shop/configuration",
+                  "hytale/hytale-shop/operations"
+                ]
+              },
+              {
+                "group": "Player Trails",
+                "pages": [
+                  "hytale/player-trails/index",
+                  "hytale/player-trails/setup",
+                  "hytale/player-trails/configuration",
+                  "hytale/player-trails/operations"
+                ]
+              }
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   }
 }

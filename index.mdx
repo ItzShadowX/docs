@@ -1,97 +1,92 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Primax Studios Documentation"
+description: "Setup, configure, and maintain Primax Studios marketplace products across Minecraft and Hytale."
 ---
 
-## Setting up
+# Build with Primax Studios
 
-Get your documentation site up and running in minutes.
+Primax Studios publishes marketplace-ready tools for server owners, creators, and communities. This documentation hub is organized by platform so you can move directly into the product you are deploying.
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="Minecraft Plugins"
+    icon="pickaxe"
+    href="#minecraft-plugins"
   >
-    Edit your docs locally and preview them in real time.
+    Documentation for Donut Orders, Donut Crates, and Donut Shops.
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="Hytale Plugins"
+    icon="sparkles"
+    href="#hytale-plugins"
   >
-    Customize the design and colors of your site to match your brand.
+    Documentation for Hytale Shop and Player Trails.
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
+</CardGroup>
+
+## What You’ll Find Here
+
+Each product page follows the same implementation-focused structure:
+
+- Product overview and intended use
+- Installation and deployment steps
+- Configuration guidance
+- Admin and usage notes
+- Troubleshooting for common rollout issues
+
+## Minecraft Plugins
+
+Primax Studios Minecraft products are designed for live server operations where reliability, fast setup, and clear admin workflows matter.
+
+<CardGroup cols={3}>
+  <Card
+    title="Donut Orders"
+    icon="receipt"
+    href="/minecraft/donut-orders"
   >
-    Organize your docs to help users find what they need and succeed with your product.
+    Order workflows, fulfillment setup, and admin operations.
   </Card>
   <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
+    title="Donut Crates"
+    icon="box-open"
+    href="/minecraft/donut-crates"
   >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
+    Crate rewards, key access, and reward balancing.
   </Card>
   <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
+    title="Donut Shops"
+    icon="store"
+    href="/minecraft/donut-shops"
   >
-    Add sample code to demonstrate how to use your product.
+    In-game shop configuration, inventory flow, and pricing setup.
+  </Card>
+</CardGroup>
+
+## Hytale Plugins
+
+The Hytale catalog focuses on modular systems that help creators ship polished gameplay and progression experiences.
+
+<CardGroup cols={2}>
+  <Card
+    title="Hytale Shop"
+    icon="cart-shopping"
+    href="/hytale/hytale-shop"
+  >
+    Shop setup, catalog structure, and player purchase flow.
   </Card>
   <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
+    title="Player Trails"
+    icon="wand-magic-sparkles"
+    href="/hytale/player-trails"
   >
-    Display images and other media.
+    Cosmetic trails, permissions setup, and effect management.
   </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+</CardGroup>
 
-## Need inspiration?
+## Recommended Starting Point
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+If you are setting up a product for the first time, start with the page for that specific plugin and work from top to bottom. The installation and configuration sections are written to get a clean first deployment before you begin tuning behavior for production use.
+
+<Info>
+Exact file names, commands, and configuration keys can vary between released packages. When a distributed archive includes product-specific examples or defaults, use those artifacts as the source of truth for the final values in your environment.
+</Info>

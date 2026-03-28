@@ -1,0 +1,28 @@
+---
+title: "Hytale Shop Operations"
+description: "Operate, validate, and troubleshoot Hytale Shop."
+---
+
+# Hytale Shop Operations
+
+## Admin Usage
+
+1. Validate the catalog in a test environment.
+2. Confirm item availability and pricing are correct.
+3. Test successful and failed purchase flows.
+4. Review any logs or audit records created by the plugin.
+5. Release to production once both balance and purchase integrity are confirmed.
+
+## Troubleshooting
+
+### Catalog does not appear correctly
+
+Check for malformed configuration, missing content definitions, or version mismatches between plugin files and server runtime.
+
+### Purchases are inconsistent
+
+Validate pricing definitions, item mappings, and any prerequisite progression or permission checks.
+
+### Upgrade changed behavior
+
+Rebuild from the newest defaults first, then merge only the custom settings you still need.

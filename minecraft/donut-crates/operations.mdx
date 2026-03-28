@@ -1,0 +1,32 @@
+---
+title: "Donut Crates Operations"
+description: "Operate, validate, and troubleshoot Donut Crates."
+---
+
+# Donut Crates Operations
+
+## Usage and Operations
+
+1. Create a small internal test crate first.
+2. Issue test keys to staff accounts.
+3. Open crates in a staging environment and verify rewards resolve correctly.
+4. Confirm rare rewards, duplicate handling, and edge-case outcomes.
+5. Move the final crate definitions to production once the reward pool is validated.
+
+## Troubleshooting
+
+### Crates open but rewards fail
+
+Check for:
+
+- Invalid reward syntax in configuration
+- Missing item definitions or dependent plugins
+- Permissions blocking the final action
+
+### Keys are not recognized
+
+Verify key identifiers, matching crate names, and any permission or metadata requirements used by the plugin.
+
+### Reward balance feels off
+
+Audit reward weights and remove extreme-value items until you have real usage data from production players.

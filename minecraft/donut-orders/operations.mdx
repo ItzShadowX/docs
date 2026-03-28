@@ -1,0 +1,36 @@
+---
+title: "Donut Orders Operations"
+description: "Run, validate, and troubleshoot Donut Orders in production."
+---
+
+# Donut Orders Operations
+
+## Admin Usage
+
+1. Start the server and confirm the plugin loads without dependency or version errors.
+2. Verify that staff-facing commands or interfaces are available to the correct roles.
+3. Submit test orders using a non-production account.
+4. Validate the full order lifecycle, including review, fulfillment, and any completion state changes.
+5. Check logs after the first live usage window for unexpected warnings.
+
+## Troubleshooting
+
+### Plugin does not load
+
+Check server startup logs for:
+
+- Unsupported server version
+- Missing dependencies
+- Configuration syntax errors
+
+### Orders are not processing correctly
+
+Verify that:
+
+- The configuration matches the current plugin version
+- Required integrations are installed and enabled
+- Staff permissions are assigned correctly
+
+### Upgrade introduced regressions
+
+Compare the newly generated default files from the latest package against your previous configuration before reusing older settings wholesale.
