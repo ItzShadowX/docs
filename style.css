@@ -23,10 +23,9 @@
   border-bottom: 1px solid rgba(120, 53, 15, 0.1);
   background: rgba(255, 247, 237, 0.98);
   color: rgba(120, 53, 15, 0.76);
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
   text-align: left;
   white-space: nowrap;
 }
@@ -40,9 +39,29 @@
 .mdx-content tbody td {
   padding: 0.9rem 1rem;
   border-bottom: 1px solid rgba(120, 53, 15, 0.08);
-  color: inherit;
+  color: rgba(66, 32, 6, 0.95);
   vertical-align: top;
-  line-height: 1.55;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.mdx-content table td code {
+  padding: 0.1rem 0.3rem;
+  border-radius: 6px;
+  background: rgba(255, 237, 213, 0.7);
+  border: 1px solid rgba(124, 45, 18, 0.12);
+  color: rgba(99, 41, 10, 0.95);
+  font-weight: 500;
+}
+
+.dark .mdx-content tbody td {
+  color: rgba(254, 215, 170, 0.92);
+}
+
+.dark .mdx-content table td code {
+  background: rgba(87, 52, 26, 0.45);
+  border-color: rgba(251, 146, 60, 0.2);
+  color: rgba(254, 215, 170, 0.95);
 }
 
 .dark .mdx-content tbody td {
