@@ -9,76 +9,35 @@ Hytale Shop registers two fixed root commands and then registers extra root comm
 
 ## Core Root Commands
 
-### `/shop`
-
-Aliases: `/servershop`, `/primaxshop`
-
-Opens the default shop UI for the executing player.
-
-### `/sell`
-
-Opens the sell UI for the executing player.
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/shop` | Config-defined | Opens the default shop UI for the executing player. Player-only because it opens a custom page. Example: `/shop`. |
+| `/sell` | Config-defined | Opens the sell UI for the executing player. Player-only because it opens a custom page. Example: `/sell`. |
 
 ## `/shop` Subcommands
 
-### `/shop open <player> <shop>`
-
-Opens a specific shop for a target player.
-
-- Use `default` for the primary `shop.yml` definition.
-- Use an additional shop ID for any file loaded from `shops/`.
-
-```text
-/shop open ShadowX default
-/shop open ShadowX alchemy
-```
-
-### `/shop reload`
-
-Reloads all config files and reloads additional shop definitions.
-
-```text
-/shop reload
-```
-
-### `/shop search <query>`
-
-Opens the default shop with the search query pre-applied.
-
-```text
-/shop search sword
-```
-
-### `/shop editor`
-
-Opens the in-game shop editor panel for the executing player.
-
-```text
-/shop editor
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/shop open <player> <shop>` | Config-defined | Opens a specific shop for a target player. Can be run by player or console. Examples: `/shop open ShadowX default`, `/shop open ShadowX alchemy`. Use `default` for the primary `shop.yml` definition and an additional shop ID for any file loaded from `shops/`. |
+| `/shop reload` | Config-defined | Reloads all config files and reloads additional shop definitions. Can be run by player or console. Example: `/shop reload`. This is the correct path after editing `shop.yml`, `shops/*.yml`, or stock-related config. |
+| `/shop search <query>` | Config-defined | Opens the default shop with the search query pre-applied. Player-only because it opens a custom page. Example: `/shop search sword`. |
+| `/shop editor` | Config-defined | Opens the in-game shop editor panel for the executing player. Player-only. Example: `/shop editor`. |
 
 ## `/sell` Subcommand
 
-### `/sell open <player>`
-
-The root sell command registers an admin-targeted `open` subcommand through `net.primaxstudios.shop.commands.sell.OpenCommand`.
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/sell open <player>` | Config-defined | Opens the sell UI for a target player. Can be run by player or console. Example: `/sell open ShadowX`. Registered through `net.primaxstudios.shop.commands.sell.OpenCommand`. |
 
 ## Additional Shop Commands
 
 Every enabled config in `shops/*.yml` can register its own root command through `AdditionalShopCommand`.
 
-Each generated command uses values from that shop config for:
-
-- command name
-- aliases
-- permission requirements
-- target shop content
-
-Examples based on the bundled files could include command roots for shops such as `alchemy`, `bazaar`, `blackmarket`, `blacksmith`, `builder`, `kitchen`, or `store`, depending on the `command` field in each file.
+| Command | Permission | Description |
+| --- | --- | --- |
+| Config-defined generated root command such as `alchemy`, `bazaar`, `blackmarket`, `blacksmith`, `builder`, `kitchen`, or `store` | Defined in the individual shop config, not the manifest | Every enabled config in `shops/*.yml` can register its own root command through `AdditionalShopCommand`. Command name, permission requirements, and target shop content all come from that shop config. |
 
 ## Operational Notes
 
-- `/shop` and `/sell` are player-oriented commands because they open custom pages.
 - `/shop open` is implemented as a non-player-only command and is suitable for console-driven targeting.
-- `/shop reload` is the correct path after editing `shop.yml`, `shops/*.yml`, or stock-related config.
 - Additional shop permissions are defined in the individual shop config, not in the manifest.

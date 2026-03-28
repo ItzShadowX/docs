@@ -9,83 +9,28 @@ Root aliases: `/donutcrates`, `/crates`
 
 ## Core Commands
 
-### `/crates`
-
-Player-only fallback. Without a subcommand, the plugin tells the player to look at a block. Use the explicit subcommands for administration.
-
-### `/crates open <player> <crateId>`
-
-Permission: `donutcrates.command.open`
-
-Opens the specified crate menu for a target player.
-
-```text
-/crates open ShadowX common_crate
-```
-
-### `/crates assign <crateId>`
-
-Permission: `donutcrates.command.assign`
-
-Player-only. Assigns the looked-at block to a crate definition.
-
-```text
-/crates assign common_crate
-```
-
-### `/crates unassign`
-
-Permission: `donutcrates.command.unassign`
-
-Player-only. Removes the crate assignment from the looked-at block.
-
-```text
-/crates unassign
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/crates` | None documented | Player-only fallback. Without a subcommand, the plugin tells the player to look at a block. Use the explicit subcommands for administration. |
+| `/crates open <player> <crateId>` | `donutcrates.command.open` | Opens the specified crate menu for a target player. Example: `/crates open ShadowX common_crate`. |
+| `/crates assign <crateId>` | `donutcrates.command.assign` | Player-only. Assigns the looked-at block to a crate definition. Example: `/crates assign common_crate`. Requires the sender to look at a valid block within reach. |
+| `/crates unassign` | `donutcrates.command.unassign` | Player-only. Removes the crate assignment from the looked-at block. Example: `/crates unassign`. Requires the sender to look at a valid block within reach. |
 
 ## Key Management
 
-### `/crates keys inspect <player> <crateId>`
-
-Permission: `donutcrates.command.keys.inspect`
-
-Reads the current key balance.
-
-### `/crates keys set <player> <crateId> <amount>`
-
-Permission: `donutcrates.command.keys.set`
-
-Sets the key balance to a non-negative amount.
-
-### `/crates keys give <player> <crateId> <amount>`
-
-Permission: `donutcrates.command.keys.give`
-
-Adds keys to the current balance.
-
-### `/crates keys take <player> <crateId> <amount>`
-
-Permission: `donutcrates.command.keys.take`
-
-Subtracts keys from the current balance, clamped at zero.
-
-### `/crates keys giveall <crateId> <amount>`
-
-Permission: `donutcrates.command.keys.giveall`
-
-Adds keys to every online player for the specified crate.
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/crates keys inspect <player> <crateId>` | `donutcrates.command.keys.inspect` | Reads the current key balance. Runs asynchronously against the repository layer. |
+| `/crates keys set <player> <crateId> <amount>` | `donutcrates.command.keys.set` | Sets the key balance to a non-negative amount. Runs asynchronously against the repository layer. |
+| `/crates keys give <player> <crateId> <amount>` | `donutcrates.command.keys.give` | Adds keys to the current balance. Runs asynchronously against the repository layer. |
+| `/crates keys take <player> <crateId> <amount>` | `donutcrates.command.keys.take` | Subtracts keys from the current balance, clamped at zero. Runs asynchronously against the repository layer. |
+| `/crates keys giveall <crateId> <amount>` | `donutcrates.command.keys.giveall` | Adds keys to every online player for the specified crate. Targets online players only and runs asynchronously against the repository layer. |
 
 ## Reload
 
-### `/crates reload`
-
-Permission: `donutcrates.command.reload`
-
-Reloads plugin configuration and crate definitions.
-
-```text
-/crates reload
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/crates reload` | `donutcrates.command.reload` | Reloads plugin configuration and crate definitions. Example: `/crates reload`. |
 
 ## Permissions Summary
 
@@ -103,6 +48,4 @@ All are declared with `default: op` in `plugin.yml`.
 
 ## Operational Notes
 
-- `assign` and `unassign` require the sender to look at a valid block within reach.
 - Key operations run asynchronously against the repository layer, so use them for bulk updates instead of editing storage by hand.
-- `giveall` targets online players only.

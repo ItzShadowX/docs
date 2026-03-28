@@ -9,64 +9,18 @@ Donut Orders registers a player-facing root command and a separate admin root co
 
 ## Player Commands
 
-### `/orders`
-
-Aliases: `/order`
-
-Opens the player orders menu.
-
-```text
-/orders
-```
-
-### `/orders <search>`
-
-Aliases: `/order <search>`
-
-Opens the orders menu with the search query pre-applied.
-
-```text
-/orders beacon
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/orders` | None documented | Opens the player orders menu. Player-only because it opens a GUI. |
+| `/orders <search>` | None documented | Opens the orders menu with the search query pre-applied. Player-only because it opens a GUI. Example: `/orders beacon`. |
 
 ## Admin Commands
 
-### `/ordersadmin`
-
-Permission: `donutorders.admin`
-
-Player-only. Opens the admin home menu. If run from console, the plugin returns the `player-only` message.
-
-```text
-/ordersadmin
-```
-
-### `/ordersadmin reload`
-
-Permission: `donutorders.admin`
-
-Reloads the plugin configuration and messages.
-
-```text
-/ordersadmin reload
-```
-
-### `/ordersadmin filter additem <filterId> <entryId>`
-
-Permission: `donutorders.admin`
-
-Player-only. Saves the item in the sender's main hand into the target filter as a custom exact-match entry.
-
-```text
-/ordersadmin filter additem books mending-book
-```
-
-Notes:
-
-- `entryId` is normalized to lowercase kebab-case.
-- The command rejects the `all` filter.
-- The command fails if the player's hand is empty.
-- On success, the new entry is written back to `filters.yml`.
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/ordersadmin` | `donutorders.admin` | Opens the admin home menu. Player-only; if run from console, the plugin returns the `player-only` message. Example: `/ordersadmin`. |
+| `/ordersadmin reload` | `donutorders.admin` | Reloads the plugin configuration and messages. Can be run by player or console. Example: `/ordersadmin reload`. Use a full restart if you changed dependencies or server platform details. |
+| `/ordersadmin filter additem <filterId> <entryId>` | `donutorders.admin` | Player-only. Saves the item in the sender's main hand into the target filter as a custom exact-match entry. Example: `/ordersadmin filter additem books mending-book`. `entryId` is normalized to lowercase kebab-case, the command rejects the `all` filter, fails if the player's hand is empty, and on success writes the new entry back to `filters.yml`. |
 
 ## Permissions
 

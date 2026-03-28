@@ -9,35 +9,16 @@ Root aliases: `/shop`, `/donutshop`, `/donutshops`
 
 ## Player Command
 
-### `/shop`
-
-Opens the main shop menu for the executing player.
-
-```text
-/shop
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/shop` | None documented | Opens the main shop menu for the executing player. Player-only because the default action opens a GUI. Example: `/shop`. |
 
 ## Admin Commands
 
-### `/shop open <player>`
-
-Permission: `donutshops.command.open`
-
-Opens the main shop menu for a target player.
-
-```text
-/shop open ShadowX
-```
-
-### `/shop reload`
-
-Permission: `donutshops.command.reload`
-
-Reloads the plugin configuration and menus.
-
-```text
-/shop reload
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/shop open <player>` | `donutshops.command.open` | Opens the main shop menu for a target player. Can be run by player or console because it accepts a `CommandSender`. Example: `/shop open ShadowX`. |
+| `/shop reload` | `donutshops.command.reload` | Reloads the plugin configuration and menus. Can be run by player or console. Example: `/shop reload`. Appropriate for menu and category edits; use a restart if you changed platform or dependency state. |
 
 ## Permissions
 
@@ -49,5 +30,3 @@ Declared in `plugin.yml` with `default: op`:
 ## Operational Notes
 
 - The default `/shop` action is player-only because it opens a GUI.
-- `/shop open` accepts a `CommandSender`, so console use is valid for targeting a player.
-- Reload is appropriate for menu and category edits. Use a restart if you changed platform or dependency state.

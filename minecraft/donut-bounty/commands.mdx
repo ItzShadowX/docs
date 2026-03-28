@@ -7,73 +7,22 @@ description: "Reference for Donut Bounty player and admin commands."
 
 ## Player Commands
 
-### `/bounty`
-
-Aliases: `/bounties`
-
-Opens the bounty browser.
-
-```text
-/bounty
-```
-
-### `/bounty <search>`
-
-Aliases: `/bounties <search>`
-
-Opens the bounty browser with a search query applied.
-
-```text
-/bounty ShadowX
-```
-
-### `/bounty place <player> <amount>`
-
-Aliases: `/bounties place <player> <amount>`
-
-Starts the bounty placement confirmation flow for the target player.
-
-```text
-/bounty place ShadowX 5000
-```
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/bounty` | None documented | Opens the bounty browser. Player-only because it opens a GUI. Example: `/bounty`. |
+| `/bounty <search>` | None documented | Opens the bounty browser with a search query applied. Player-only because it opens a GUI. Example: `/bounty ShadowX`. |
+| `/bounty place <player> <amount>` | None documented | Starts the bounty placement confirmation flow for the target player. Player-only. Example: `/bounty place ShadowX 5000`. The amount parser rejects zero or negative values. |
 
 ## Admin Commands
 
-### `/bountyadmin`
-
-Permission: `donutbounty.admin`
-
-Player-only default action. Opens the bounty menu for the executing staff member.
-
-### `/bountyadmin reload`
-
-Permission: `donutbounty.admin`
-
-Reloads configuration and locale content.
-
-### `/bountyadmin set <player> <amount>`
-
-Permission: `donutbounty.admin`
-
-Sets a player's bounty to an exact value.
-
-### `/bountyadmin add <player> <amount>`
-
-Permission: `donutbounty.admin`
-
-Adds to the player's current bounty.
-
-### `/bountyadmin remove <player> <amount>`
-
-Permission: `donutbounty.admin`
-
-Subtracts from the player's current bounty.
-
-### `/bountyadmin reset`
-
-Permission: `donutbounty.admin`
-
-Resets all bounties.
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/bountyadmin` | `donutbounty.admin` | Opens the bounty menu for the executing staff member. Default action is player-only. Example: `/bountyadmin`. |
+| `/bountyadmin reload` | `donutbounty.admin` | Reloads configuration and locale content. Can be run by player or console. Example: `/bountyadmin reload`. Suitable after config edits. |
+| `/bountyadmin set <player> <amount>` | `donutbounty.admin` | Sets a player's bounty to an exact value. Can be run by player or console. Example: `/bountyadmin set ShadowX 5000`. |
+| `/bountyadmin add <player> <amount>` | `donutbounty.admin` | Adds to the player's current bounty. Can be run by player or console. Example: `/bountyadmin add ShadowX 5000`. The amount parser rejects zero or negative values. |
+| `/bountyadmin remove <player> <amount>` | `donutbounty.admin` | Subtracts from the player's current bounty. Can be run by player or console. Example: `/bountyadmin remove ShadowX 5000`. The amount parser rejects zero or negative values. |
+| `/bountyadmin reset` | `donutbounty.admin` | Resets all bounties. Can be run by player or console. Example: `/bountyadmin reset`. High-impact admin action. |
 
 ## Permissions
 

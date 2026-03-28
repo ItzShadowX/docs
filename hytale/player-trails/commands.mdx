@@ -9,69 +9,29 @@ Root aliases: `/trails`, `/trail`, `/primaxtrails`, `/playertrails`
 
 ## Active Commands
 
-### `/trails`
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/trails` | None documented | Opens the main trails menu for the executing player. Player-only because it is a UI-opening default action. Example: `/trails`. |
+| `/trails open <player>` | None documented | Opens the trails menu for a target player. Example: `/trails open ShadowX`. |
+| `/trails search <query>` | None documented | Opens the trails menu with the search term pre-applied. Player-only because it opens the UI. Example: `/trails search cosmic`. |
+| `/trails give <player> <trailId>` | None documented | Grants the specified trail to a player through the configured permission provider. Example: `/trails give ShadowX alerted_pulse`. |
+| `/trails take <player> <trailId>` | None documented | Revokes the specified trail from a player and stops it immediately if it is active. Example: `/trails take ShadowX alerted_pulse`. |
+| `/trails editor` | None documented | Opens the in-game trail editor for the executing player. Player-only. Example: `/trails editor`. |
+| `/trails reload` | None documented | Reloads config, reinitializes the permission manager, and reloads the selected economy provider. Can be run by player or console. Example: `/trails reload`. Refreshes permission and economy integration, not just YAML files. |
 
-Opens the main trails menu for the executing player.
-
-### `/trails open <player>`
-
-Opens the trails menu for a target player.
-
-```text
-/trails open ShadowX
-```
-
-### `/trails search <query>`
-
-Opens the trails menu with the search term pre-applied.
-
-```text
-/trails search cosmic
-```
-
-### `/trails give <player> <trailId>`
-
-Grants the specified trail to a player through the configured permission provider.
-
-```text
-/trails give ShadowX alerted_pulse
-```
-
-### `/trails take <player> <trailId>`
-
-Aliases: `/trails revoke`, `/trails remove`
-
-Revokes the specified trail from a player and stops it immediately if it is active.
-
-```text
-/trails take ShadowX alerted_pulse
-```
-
-### `/trails editor`
-
-Opens the in-game trail editor for the executing player.
-
-### `/trails reload`
-
-Reloads config, reinitializes the permission manager, and reloads the selected economy provider.
-
-```text
-/trails reload
-```
-
-## Commands Present In Source But Not Currently Registered
+## Dormant Commands Present In Source But Not Currently Registered
 
 The source tree contains additional command classes, but `TrailCommand` currently comments them out and does not register them:
 
-- `/trails equip <trailId>`
-- `/trails unequip`
-- `/trails preview <trailId>`
-- `/trails purchase <trailId>`
+| Command | Permission | Description |
+| --- | --- | --- |
+| `/trails equip <trailId>` | None documented | Present in source but not registered. Would equip a trail through a direct command path. Document as dormant implementation, not active production behavior. |
+| `/trails unequip` | None documented | Present in source but not registered. Would unequip the currently active trail through a direct command path. Document as dormant implementation, not active production behavior. |
+| `/trails preview <trailId>` | None documented | Present in source but not registered. Would preview a trail through a direct command path. Document as dormant implementation, not active production behavior. |
+| `/trails purchase <trailId>` | None documented | Present in source but not registered. Would purchase a trail through a direct command path. Document as dormant implementation, not active production behavior. |
 
 Document them as dormant implementation paths, not as active production commands.
 
 ## Operational Notes
 
 - `/trails` and its UI-opening subcommands are player-oriented.
-- `open`, `give`, and `take` are implemented as non-player-only commands and can target other players.
-- `reload` also refreshes permission and economy integration, not just YAML files.
