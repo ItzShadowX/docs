@@ -1,20 +1,44 @@
 ---
 title: "Setup"
-description: "Install and deploy the Player Trails plugin."
+description: "Install Player Trails and prepare permissions, economy, and trail content."
 ---
 
 # Player Trails Setup
 
+Player Trails is a Hytale cosmetic mod that exposes a trail browser, staff-managed trail grants, an editor panel, optional economy-backed purchases, and an included asset pack. The manifest currently identifies version `1.2.6`.
+
+## Requirements
+
+- A working Hytale installation accessible from the runtime environment
+- Java toolchain version defined by the project's `java_version` Gradle property
+- Optional permission integration: `LuckPerms`
+- Optional economy integrations such as `VaultUnlocked`, `EconomyAPI`, `Ecotale`, `EliteEssentials`, `EssentialsPlus`, `HytaleEssentials`, `CoinsAndMarkets`, or `HyCurrency`
+
 ## Installation
 
-1. Verify compatibility with the targeted Hytale runtime or deployment environment.
-2. Install the plugin package in the correct plugins location.
-3. Start the environment to generate default trail data if supported.
-4. Stop the environment before applying production customization.
-5. Back up the initial defaults before creating a larger cosmetics catalog.
+1. Build or obtain the Player Trails plugin JAR.
+2. Deploy it into the server's plugin/mod path used by your Hytale setup.
+3. Install any economy or permission provider you intend to use before first launch.
+4. Start the server once to generate and validate config files.
+5. Stop the server before editing trail catalogs or production defaults.
 
-## First Deployment Checklist
+## Generated And Managed Files
 
-- Confirm the runtime loads the plugin and generates default data
-- Preserve a backup of initial trail definitions
-- Start with a small internal test set before wider release
+- `manifest.json`: plugin metadata and asset-pack flag
+- `config.yml`: global interval, view distance, economy settings, and world allow/deny lists
+- `messages.yml`: player and admin text
+- `trails.yml`: categories, trail definitions, prices, permissions, and particle lists
+
+## Deployment Notes
+
+- The plugin supports both built-in and LuckPerms-backed permission handling.
+- Purchasing can be enabled globally even if the purchase command is not currently registered; the UI and future command exposure still depend on those values being coherent.
+- The asset pack is part of the deployment story, so treat visual resource changes like plugin changes.
+
+## First Launch Checklist
+
+- Confirm `/trails` registers successfully.
+- Open the trail menu and load at least one category.
+- Grant and revoke one trail with admin commands.
+- Verify the active permission provider behaves as expected.
+- If purchasing is enabled, confirm the selected economy provider resolves even if you rely on UI purchase flow rather than commands.

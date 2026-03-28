@@ -1,20 +1,50 @@
 ---
 title: "Setup"
-description: "Install and deploy the Hytale Shop plugin."
+description: "Install Hytale Shop and prepare its economy, stock, and asset-backed UI flow."
 ---
 
 # Hytale Shop Setup
 
+Hytale Shop is a Hytale server mod that exposes default and additional shop UIs, sell flows, optional stock tracking, rotation, and an in-game editor. The manifest currently identifies version `1.4.5` and includes an asset pack.
+
+## Requirements
+
+- A working Hytale installation accessible from the build/runtime environment
+- Java toolchain version defined by the project's `java_version` Gradle property
+- Hytale server runtime from your active patchline
+- Optional economy integrations such as `VaultUnlocked`, `EconomyAPI`, `Ecotale`, `EliteEssentials`, `EssentialsPlus`, `HytaleEssentials`, `CoinsAndMarkets`, or `HyCurrency`
+- Optional `PlaceholderAPI` for placeholder-aware logic
+
 ## Installation
 
-1. Confirm the server or environment matches the supported release requirements.
-2. Add the plugin package to the correct Hytale plugin location for your deployment model.
-3. Start the environment once to generate default files if the package supports auto-generation.
-4. Stop the environment before editing production configuration.
-5. Keep the original package and generated defaults available for comparison during upgrades.
+1. Build or obtain the plugin JAR for the target patchline.
+2. Place the built mod into the server's mods/plugins deployment location used by your Hytale setup.
+3. If you use external economy providers, install them before first launch.
+4. Start the server once so the plugin generates and validates its resource files.
+5. Stop the server before making production edits.
 
-## First Deployment Checklist
+## Generated And Managed Files
 
-- Confirm the runtime loads the plugin cleanly
-- Store untouched generated defaults before customization
-- Validate the first catalog in a staging environment
+- `manifest.json`: plugin metadata and asset-pack toggle
+- `config.yml`: economy defaults, price formatting, trade UI mode, and global buy/sell toggles
+- `database.yml`: SQLite or MySQL backend settings
+- `messages.yml`: operator and player-facing text
+- `shop.yml`: default shop tabs and items
+- `shops/*.yml`: additional shop definitions with their own commands and permissions
+- `sell-items.yml`: sell flow data
+- `stock.yml`: global stock defaults
+- `ui.yml`: UI-oriented configuration
+
+## Deployment Notes
+
+- The build uses RunHytale and expects a valid Hytale install path.
+- Additional shop files under `shops/` generate extra commands automatically at startup.
+- The plugin can include its asset pack from `src/main/resources`, so keep config and content changes versioned together.
+
+## First Launch Checklist
+
+- Confirm `/shop` and `/sell` register successfully.
+- Confirm any additional shops in `shops/` also register their configured commands.
+- Open the default shop, one additional shop, and the sell page.
+- Verify the selected economy provider resolves correctly.
+- If stock is enabled, confirm at least one item reports and updates stock as expected.

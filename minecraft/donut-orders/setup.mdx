@@ -1,21 +1,48 @@
 ---
 title: "Setup"
-description: "Install and deploy the Donut Orders Minecraft plugin."
+description: "Install Donut Orders on Paper and prepare its runtime dependencies."
 ---
 
 # Donut Orders Setup
 
+Donut Orders is a Paper plugin for player order browsing, admin-managed fulfillment, configurable filters, and market-aware pricing. The project is built against Paper `1.21.11` and expects a Paper-compatible server runtime.
+
+## Requirements
+
+- Paper `1.21.11` or a compatible Paper derivative
+- Java runtime that matches your Paper deployment
+- One supported market plugin: `ShopGUIPlus` or `EconomyShopGUI`
+- Optional economy hooks depending on your currency mode: `Vault`, `PlayerPoints`, or `CoinsEngine`
+- Optional `PlaceholderAPI` if your stack depends on placeholders exposed by the wider server setup
+
 ## Installation
 
-1. Confirm the server is running the Minecraft platform and version supported by the product package.
-2. Stop the server before adding or replacing the plugin.
-3. Place the Donut Orders plugin JAR into the server `plugins` directory.
-4. Start the server once so the plugin can generate its default files and folders.
-5. Stop the server again before making production configuration changes.
+1. Stop the server.
+2. Copy the Donut Orders JAR into `plugins/`.
+3. If you use `vault`, `player_points`, or `coins_engine`, install the matching dependency before first boot.
+4. If you use market-aware sorting or pricing, install either `ShopGUIPlus` or `EconomyShopGUI` before first boot.
+5. Start the server once so Donut Orders generates its default files.
+6. Stop the server again before editing production values.
 
-## First Deployment Checklist
+## Generated Files
 
-- Keep the distributed package for reference during setup
-- Verify startup logs for dependency or compatibility issues
-- Generate fresh default files before copying older configuration forward
-- Back up the generated defaults before the first production edit
+After first boot, review these files in the Donut Orders data folder:
+
+- `config.yml`: language, currency mode, order expiry, market integration, menu layouts, sign input, and sounds
+- `database.yml`: SQLite or MySQL connection settings and pool sizing
+- `filters.yml`: filter definitions for item browsing, including material-based and custom serialized item filters
+- `locale/en.yml`: operator and player-facing messages
+
+## Deployment Notes
+
+- The plugin defaults to `sqlite`; move to MySQL before launch if you need shared or higher-volume storage.
+- `filters.yml` is substantial by design. Keep an untouched copy so upgrades are easier to diff.
+- `ordersadmin filter additem` writes custom held-item filters back into `filters.yml`, so this file becomes part configuration and part admin-managed content.
+
+## First Launch Checklist
+
+- Confirm the plugin loads without Paper compatibility errors.
+- Confirm the selected currency backend is installed and enabled.
+- Confirm the selected shop backend matches `shop-settings.shop-type`.
+- Open `/orders` as a player and `/ordersadmin` as staff after configuration is complete.
+- If you intend to reuse existing config, diff it against fresh defaults before copying values over.

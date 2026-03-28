@@ -1,0 +1,43 @@
+---
+title: "Setup"
+description: "Install Donut Bounty on Paper and prepare bounty storage and economy hooks."
+---
+
+# Donut Bounty Setup
+
+Donut Bounty is a Paper `1.21.11` bounty plugin with searchable menus, configurable sorting, staff-side bounty control, and persistent storage.
+
+## Requirements
+
+- Paper `1.21.11` or a compatible Paper derivative
+- Java runtime that matches your Paper deployment
+- Optional economy integration depending on `currency.type`: `Vault`, `PlayerPoints`, or `CoinsEngine`
+- Optional MySQL if you do not want the default SQLite backend
+
+## Installation
+
+1. Stop the server.
+2. Copy the Donut Bounty JAR into `plugins/`.
+3. Install the matching economy dependency for the currency mode you want to use.
+4. Start the server once to generate defaults.
+5. Stop the server before editing production values.
+
+## Generated Files
+
+- `config.yml`: currency mode, bounty menu layouts, search sign settings, sorting defaults, and sounds
+- `database.yml`: SQLite or MySQL connection settings
+- `locale/en.yml`: player and admin message strings
+
+## Deployment Notes
+
+- The plugin defaults to SQLite and stores bounty state persistently.
+- Search is sign-based, so sign material and line index are operator-configurable.
+- Admin actions are command-driven rather than file-driven, so train staff from the commands page before launch.
+
+## First Launch Checklist
+
+- Confirm the plugin enables cleanly.
+- Confirm the selected economy backend is installed and active.
+- Open `/bounty` as a player.
+- Run `/bountyadmin` and one test admin adjustment.
+- Restart once and verify bounty data persists.

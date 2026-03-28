@@ -1,21 +1,69 @@
 ---
 title: "Configuration"
-description: "Configure workflow, integrations, and environment settings for Donut Orders."
+description: "Configure Donut Orders pricing, filters, menus, and storage."
 ---
 
 # Donut Orders Configuration
 
-Review the generated configuration files and adjust them for your server's workflow.
+Donut Orders is split across a small set of files with clear responsibilities. Configure them in this order so rollout issues are easier to isolate.
 
-## Typical Areas To Verify
+## 1. `config.yml`
 
-- Main behavior settings
-- Message formatting and branding
-- Order-related limits, cooldowns, or processing rules
-- Economy, storage, or dependency integration values
+This is the main behavior file.
 
-## Configuration Guidance
+### Core sections
 
-When available, keep a clean copy of the default configuration from the release package so you can compare it against your production version during upgrades.
+- `lang`: selects the locale file from `locale/`
+- `currency.type`: `vault`, `player_points`, `coins_engine`, or `custom_currency`
+- `order-settings`: expiry and deletion retention windows
+- `shop-settings.shop-type`: `shopguiplus` or `economyshopgui`
+- `order-sorting-settings` and `item-sorting-settings`: defaults for list ordering
+- `filter-settings.default-filter`: the filter ID loaded on first open
+- `input-settings`: sign material, color, and input line
+- `menu-settings`: full inventory layouts for player and admin menus
+- `menu-sounds`: UX sound profile for open, confirm, invalid input, page change, and value edits
 
-Prefer changing one section at a time during the initial rollout. That makes it easier to isolate workflow regressions and confirm which setting introduced them.
+### Important rollout decisions
+
+- Set `currency.type` before testing any order lifecycle.
+- Match `shop-settings.shop-type` to the installed market plugin or price-driven ordering will be wrong.
+- Keep the default layout comments intact while editing `menu-settings`; the layout keys map directly to menu actions.
+
+## 2. `database.yml`
+
+This file controls persistence.
+
+- `database.type`: `sqlite` or `mysql`
+- `credentials`: host, port, database, username, password, and JDBC parameters
+- `pool-settings`: Hikari-style pool sizing and timeouts
+
+For single-node servers, the default SQLite setup is fine. For shared infrastructure or higher write volume, configure MySQL before launch.
+
+## 3. `filters.yml`
+
+This file defines the item and material groups exposed in the browsing UI.
+
+- Each filter has a `database-key` and `label`
+- Material-backed filters use `materials`
+- Custom exact-match items use `items`
+- The built-in `all` filter matches everything
+
+Use this file for static categories. Use `/ordersadmin filter additem <filterId> <entryId>` when staff need to add an exact held item without hand-writing serialized data.
+
+## 4. `locale/en.yml`
+
+Review staff and player messages once your menu flow is stable. This is where success, failure, and validation messages come from.
+
+## Recommended Edit Order
+
+1. Choose `currency.type` and `shop-settings.shop-type` in `config.yml`.
+2. Configure storage in `database.yml`.
+3. Review filter coverage in `filters.yml`.
+4. Adjust menu layouts and sounds only after the functional flow works.
+5. Localize messages last.
+
+## Validation Tips
+
+- Test both `/orders` and `/ordersadmin` after any filter or menu change.
+- If pricing looks wrong, verify the shop backend, not just the economy backend.
+- If custom filter items stop matching, compare the current `filters.yml` entry against a newly generated default and any staff-side additions.

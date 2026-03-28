@@ -1,20 +1,47 @@
 ---
 title: "Setup"
-description: "Install and deploy the Donut Crates Minecraft plugin."
+description: "Install Donut Crates on Paper and prepare crate dependencies."
 ---
 
 # Donut Crates Setup
 
+Donut Crates is a Paper `1.21.11` crate plugin with assignable crate blocks, optional holograms, selectable rewards, and persistent key balances.
+
+## Requirements
+
+- Paper `1.21.11` or a compatible Paper derivative
+- Java runtime that matches your Paper deployment
+- Optional `PlaceholderAPI`
+- Optional hologram backend: `DecentHolograms` or `FancyHolograms`
+- Optional MySQL or MongoDB if you do not want the default SQLite storage
+
 ## Installation
 
-1. Confirm compatibility with your server software and release version.
-2. Stop the server before installing the plugin.
-3. Move the Donut Crates JAR into the `plugins` directory.
-4. Start the server to generate default crate files and plugin data.
-5. Stop the server and edit the generated files before going live.
+1. Stop the server.
+2. Copy the Donut Crates JAR into `plugins/`.
+3. Install your preferred hologram plugin before first boot if you want floating crate text.
+4. Start the server once to generate defaults.
+5. Stop the server before editing configs or adding crate definitions.
 
-## First Deployment Checklist
+## Generated Files
 
-- Confirm the server boots cleanly with the new plugin installed
-- Save the freshly generated defaults before tuning rewards
-- Test on staging before importing a large production crate catalog
+- `config.yml`: language and menu sound settings
+- `database.yml`: SQLite, MySQL, or MongoDB storage configuration
+- `confirm_menu.yml`: confirmation menu content
+- `crates/*.yml`: crate definitions, hologram content, menu layouts, and rewards
+- `databases/crates.yml`: persistent mapping for assigned crate blocks
+- `locale/en.yml`: player and staff messages
+
+## Deployment Notes
+
+- Crate content is file-driven. Each crate is its own file in `crates/`.
+- Assigned world blocks are stored separately from the crate definitions themselves.
+- Key balances are persistent, so choose the database backend before launch if you expect scale or shared hosting.
+
+## First Launch Checklist
+
+- Confirm the plugin enables without dependency warnings.
+- Confirm your hologram backend, if present, is recognized.
+- Open one crate with `/crates open <player> <crateId>`.
+- Assign one physical block with `/crates assign <crateId>` and verify it survives restart.
+- Inspect and modify a test player's keys before going live.

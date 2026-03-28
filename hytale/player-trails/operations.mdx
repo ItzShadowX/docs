@@ -1,28 +1,49 @@
 ---
 title: "Operations"
-description: "Operate, validate, and troubleshoot Player Trails."
+description: "Operate Player Trails in production and troubleshoot permissions, world rules, and content issues."
 ---
 
 # Player Trails Operations
 
-## Usage and Operations
+## Standard Admin Workflow
 
-1. Assign a small test set of trails to internal accounts.
-2. Review visibility in crowded environments.
-3. Validate equip, unequip, and switching behavior.
-4. Confirm restricted trails remain inaccessible to standard users.
-5. Monitor runtime behavior during the first live event or release window.
+1. Confirm `/trails` registers and opens correctly.
+2. Load a few categories to verify `trails.yml` parsed correctly.
+3. Grant a trail with `/trails give` and revoke it with `/trails take`.
+4. If using LuckPerms, confirm grants and revokes propagate immediately.
+5. Reload once after config edits and confirm the economy and permission subsystems reconnect.
+
+## Safe Live Changes
+
+- Trail names, prices, and category edits: reloadable
+- World allow or deny list changes: reloadable, but validate in the affected world immediately
+- Permission provider changes: reloadable through `/trails reload`, but still test with a live account
+- Asset-pack sensitive visual changes: restart recommended
 
 ## Troubleshooting
 
-### Effects do not appear
+### Trails do not appear in a world
 
-Check plugin startup logs, trail enablement settings, and player access requirements.
+Check:
 
-### Performance degrades in busy areas
+- `enabled-worlds`
+- `disabled-worlds`
+- whether the trail is enabled
+- whether the player is actually running an active trail
 
-Reduce active effect density, simplify enabled cosmetics, or narrow access while testing optimized values.
+### Players see trails but cannot use them
 
-### Players can access the wrong cosmetics
+Check:
 
-Audit permission mappings, unlock conditions, and any inherited role assignments from your server setup.
+- the trail's `permission` node
+- the active permission provider
+- whether the player received a grant through `/trails give`
+- whether the trail is disabled or assigned to the wrong category
+
+### Purchasing is configured but staff cannot use a purchase command
+
+That is expected in the current source snapshot. `PurchaseCommand` exists but is not registered in `TrailCommand`. Treat purchasing support as config-backed capability with dormant command support, not an active root command.
+
+### Reload does not fix a bad state
+
+`/trails reload` refreshes config, permission, and economy subsystems. If the issue persists after reload, inspect the provider plugin or the trail content itself rather than repeating reloads.

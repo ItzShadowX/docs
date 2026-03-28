@@ -20,6 +20,7 @@
                 "pages": [
                   "minecraft/donut-orders/setup",
                   "minecraft/donut-orders/configuration",
+                  "minecraft/donut-orders/commands",
                   "minecraft/donut-orders/operations"
                 ]
               },
@@ -28,6 +29,7 @@
                 "pages": [
                   "minecraft/donut-crates/setup",
                   "minecraft/donut-crates/configuration",
+                  "minecraft/donut-crates/commands",
                   "minecraft/donut-crates/operations"
                 ]
               },
@@ -36,7 +38,17 @@
                 "pages": [
                   "minecraft/donut-shops/setup",
                   "minecraft/donut-shops/configuration",
+                  "minecraft/donut-shops/commands",
                   "minecraft/donut-shops/operations"
+                ]
+              },
+              {
+                "group": "Donut Bounty",
+                "pages": [
+                  "minecraft/donut-bounty/setup",
+                  "minecraft/donut-bounty/configuration",
+                  "minecraft/donut-bounty/commands",
+                  "minecraft/donut-bounty/operations"
                 ]
               }
             ]
@@ -54,6 +66,7 @@
                 "pages": [
                   "hytale/hytale-shop/setup",
                   "hytale/hytale-shop/configuration",
+                  "hytale/hytale-shop/commands",
                   "hytale/hytale-shop/operations"
                 ]
               },
@@ -62,6 +75,7 @@
                 "pages": [
                   "hytale/player-trails/setup",
                   "hytale/player-trails/configuration",
+                  "hytale/player-trails/commands",
                   "hytale/player-trails/operations"
                 ]
               }

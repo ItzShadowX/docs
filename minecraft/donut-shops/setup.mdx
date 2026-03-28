@@ -1,20 +1,44 @@
 ---
 title: "Setup"
-description: "Install and deploy the Donut Shops Minecraft plugin."
+description: "Install Donut Shops on Paper and prepare its economy integrations."
 ---
 
 # Donut Shops Setup
 
+Donut Shops is a Paper `1.21.11` menu-driven shop plugin with category files, confirmation menus, and multiple economy backends.
+
+## Requirements
+
+- Paper `1.21.11` or a compatible Paper derivative
+- Java runtime that matches your Paper deployment
+- Optional economy integrations depending on `currency.type`: `Vault`, `PlayerPoints`, or `CoinsEngine`
+
 ## Installation
 
-1. Verify the plugin release matches your server environment.
-2. Stop the server and place the plugin JAR in the `plugins` directory.
-3. Start the server once to generate default shop files.
-4. Stop the server before editing product definitions and prices.
-5. Back up the generated configuration before major catalog edits.
+1. Stop the server.
+2. Copy the Donut Shops JAR into `plugins/`.
+3. Install any required economy dependency for the currency mode you plan to use.
+4. Start the server once so Donut Shops generates its default files.
+5. Stop the server before editing categories, menus, or prices.
 
-## First Deployment Checklist
+## Generated Files
 
-- Validate startup logs before exposing the shop to players
-- Keep a backup of the generated catalog defaults
-- Begin with a small product set rather than a full production catalog
+- `config.yml`: language, currency mode, purchase limits, menu close behavior, and sounds
+- `menus/shop_menu.yml`: top-level category launcher layout
+- `menus/confirm_menu.yml`: purchase confirmation layout
+- `categories/*.yml`: one file per shop category and product list
+- `locale/en.yml`: user-facing messages
+
+## Deployment Notes
+
+- Categories are file-backed and referenced from `menus/shop_menu.yml`.
+- The plugin's command surface is intentionally small: GUI-first for players, lightweight admin commands for staff.
+- There is no separate database file; product and menu content are file-based.
+
+## First Launch Checklist
+
+- Confirm the plugin enables and your chosen currency backend is installed.
+- Open `/shop` as a player.
+- Use `/shop open <player>` as staff.
+- Complete one purchase through the confirm menu.
+- Verify that category IDs in `menus/shop_menu.yml` match actual files in `categories/`.

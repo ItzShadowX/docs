@@ -1,33 +1,51 @@
 ---
 title: "Operations"
-description: "Operate, validate, and troubleshoot Donut Shops."
+description: "Operate Donut Shops in production and troubleshoot category and purchase issues."
 ---
 
 # Donut Shops Operations
 
-## Admin Usage
+## Daily Checks
 
-1. Test purchases with a staff account and a normal player account.
-2. Confirm balance deduction, item delivery, and failure messaging.
-3. Review behavior when inventories are full or transactions are invalid.
-4. Validate that restricted categories stay hidden or blocked as expected.
-5. Announce pricing changes carefully when updating a live economy.
+1. Confirm the plugin loaded cleanly after boot.
+2. Open `/shop` as a player.
+3. Confirm at least one category opens and one purchase completes.
+4. Verify the correct currency backend was charged.
+
+## Safe Live Changes
+
+- Category price edits: reloadable
+- Category additions: reloadable if wired into `shop_menu.yml`
+- Currency backend changes: restart and full retest recommended
+- Message-only edits: reloadable
 
 ## Troubleshooting
 
 ### Purchases fail or do nothing
 
-Inspect:
+Check:
 
-- Economy plugin status
-- Pricing configuration validity
-- Inventory delivery constraints
-- Permission checks
+- `currency.type` in `config.yml`
+- required economy dependency is installed and enabled
+- product price is set on the category entry
+- confirm menu is still wired correctly
 
-### Shop menus look inconsistent
+### Category button appears but will not open
 
-Review formatting, category order, and any custom text fields introduced during setup.
+Check:
 
-### Live pricing changes caused issues
+- the `id` in `menus/shop_menu.yml`
+- the corresponding filename in `categories/`
+- YAML syntax in the target category file
 
-Revert to the last known-good configuration backup and reintroduce changes in smaller batches.
+### Shop looks inconsistent after edits
+
+Check:
+
+- product slot ranges against `menu-rows`
+- filler settings in `shop_menu.yml`
+- MiniMessage formatting in category names and icon lore
+
+## Upgrade Guidance
+
+Back up `config.yml`, `menus/`, and `categories/` together. These files define one UI flow and should be versioned as a set.

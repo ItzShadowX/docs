@@ -1,11 +1,11 @@
 ---
 title: "Primax Studios Documentation"
-description: "Setup, configure, and maintain Primax Studios marketplace products across Minecraft and Hytale."
+description: "Setup, configure, and operate Primax Studios products across Minecraft and Hytale."
 ---
 
-# Build with Primax Studios
+# Primax Studios Docs
 
-Primax Studios publishes marketplace-ready tools for server owners, creators, and communities. This documentation hub is organized by platform so you can move directly into the product you are deploying.
+This site is the operator manual for Primax Studios products. Each product section is written from the shipped plugin resources and command sources so you can move from first install to production rollout without reverse-engineering the codebase.
 
 <CardGroup cols={2}>
   <Card
@@ -13,80 +13,89 @@ Primax Studios publishes marketplace-ready tools for server owners, creators, an
     icon="pickaxe"
     href="#minecraft-plugins"
   >
-    Documentation for Donut Orders, Donut Crates, and Donut Shops.
+    Donut Orders, Donut Crates, Donut Shops, and Donut Bounty.
   </Card>
   <Card
     title="Hytale Plugins"
     icon="sparkles"
     href="#hytale-plugins"
   >
-    Documentation for Hytale Shop and Player Trails.
+    Hytale Shop and Player Trails.
   </Card>
 </CardGroup>
 
-## What You’ll Find Here
+## What You Get
 
-Each product page follows the same implementation-focused structure:
+Every product now includes the same four-page structure:
 
-- Product overview and intended use
-- Installation and deployment steps
-- Configuration guidance
-- Admin and usage notes
-- Troubleshooting for common rollout issues
+- `Setup`: runtime requirements, dependencies, install flow, and generated files
+- `Configuration`: the actual config files you need to review and what they control
+- `Commands`: aliases, subcommands, permissions, player-vs-console behavior, and examples
+- `Operations`: rollout checks, admin workflows, reload guidance, and troubleshooting
 
 ## Minecraft Plugins
 
-Primax Studios Minecraft products are designed for live server operations where reliability, fast setup, and clear admin workflows matter.
+Primax Studios Minecraft plugins target Paper-based server operations where config accuracy and low-friction staff workflows matter.
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card
     title="Donut Orders"
     icon="receipt"
-    href="/minecraft/donut-orders"
+    href="/minecraft/donut-orders/setup"
   >
-    Order workflows, fulfillment setup, and admin operations.
+    Player order browsing, admin fulfillment, filters, and market-backed pricing.
   </Card>
   <Card
     title="Donut Crates"
     icon="box-open"
-    href="/minecraft/donut-crates"
+    href="/minecraft/donut-crates/setup"
   >
-    Crate rewards, key access, and reward balancing.
+    Selectable crate rewards, key balances, holograms, and crate block assignment.
   </Card>
   <Card
     title="Donut Shops"
     icon="store"
-    href="/minecraft/donut-shops"
+    href="/minecraft/donut-shops/setup"
   >
-    In-game shop configuration, inventory flow, and pricing setup.
+    Category-driven shop menus with Vault, PlayerPoints, and CoinsEngine support.
+  </Card>
+  <Card
+    title="Donut Bounty"
+    icon="crosshairs"
+    href="/minecraft/donut-bounty/setup"
+  >
+    Bounty browsing, search and sorting, admin controls, and payout configuration.
   </Card>
 </CardGroup>
 
 ## Hytale Plugins
 
-The Hytale catalog focuses on modular systems that help creators ship polished gameplay and progression experiences.
+The Hytale catalog focuses on in-game UI workflows, configurable economy hooks, and content packs that server teams can extend without rewriting core systems.
 
 <CardGroup cols={2}>
   <Card
     title="Hytale Shop"
     icon="cart-shopping"
-    href="/hytale/hytale-shop"
+    href="/hytale/hytale-shop/setup"
   >
-    Shop setup, catalog structure, and player purchase flow.
+    Default and additional shops, sell flows, stock rotation, and in-game editors.
   </Card>
   <Card
     title="Player Trails"
     icon="wand-magic-sparkles"
-    href="/hytale/player-trails"
+    href="/hytale/player-trails/setup"
   >
-    Cosmetic trails, permissions setup, and effect management.
+    Cosmetic trail categories, permissions, economy-backed unlocks, and editor tools.
   </Card>
 </CardGroup>
 
-## Recommended Starting Point
+## Recommended Workflow
 
-If you are setting up a product for the first time, start with the page for that specific plugin and work from top to bottom. The installation and configuration sections are written to get a clean first deployment before you begin tuning behavior for production use.
+1. Start with the product's `Setup` page and confirm the runtime and dependency assumptions.
+2. Review `Configuration` before copying any existing production files forward.
+3. Train staff from the `Commands` page so aliases and permission nodes match the live plugin.
+4. Use `Operations` for launch-day validation and post-upgrade troubleshooting.
 
 <Info>
-Exact file names, commands, and configuration keys can vary between released packages. When a distributed archive includes product-specific examples or defaults, use those artifacts as the source of truth for the final values in your environment.
+These docs are based on the source trees and bundled default resources in the product repositories. If a packaged release ships newer defaults than the repository snapshot you deployed from, use the release bundle as the final source of truth.
 </Info>

@@ -1,36 +1,60 @@
 ---
 title: "Operations"
-description: "Run, validate, and troubleshoot Donut Orders in production."
+description: "Run Donut Orders in production and troubleshoot common failures."
 ---
 
 # Donut Orders Operations
 
-## Admin Usage
+## Daily Admin Flow
 
-1. Start the server and confirm the plugin loads without dependency or version errors.
-2. Verify that staff-facing commands or interfaces are available to the correct roles.
-3. Submit test orders using a non-production account.
-4. Validate the full order lifecycle, including review, fulfillment, and any completion state changes.
-5. Check logs after the first live usage window for unexpected warnings.
+1. Confirm the plugin enabled cleanly after startup or reload.
+2. Validate `/orders` as a player and `/ordersadmin` as staff.
+3. Submit a few test searches to confirm the filter and market wiring still behave as expected.
+4. Check that newly created or fulfilled orders persist across a restart.
+
+## Safe Changes During Live Operation
+
+- Message edits: reloadable
+- Filter additions through `/ordersadmin filter additem`: live-safe, but still back up `filters.yml`
+- Currency backend swaps: schedule a restart and retest the full workflow
+- Database engine changes: migrate during maintenance, not mid-session
 
 ## Troubleshooting
 
-### Plugin does not load
+### Plugin loads but pricing or sorting is wrong
 
-Check server startup logs for:
+Check these first:
 
-- Unsupported server version
-- Missing dependencies
-- Configuration syntax errors
+- `shop-settings.shop-type` matches the installed market plugin
+- The market plugin is enabled before Donut Orders initializes
+- The selected transaction type for `shopguiplus` matches your server economy flow
 
-### Orders are not processing correctly
+### Orders do not persist or disappear unexpectedly
 
-Verify that:
+Review:
 
-- The configuration matches the current plugin version
-- Required integrations are installed and enabled
-- Staff permissions are assigned correctly
+- `database.yml` connection settings
+- write permissions for SQLite storage
+- `order-settings.expiry-duration` and `deletion-duration`
 
-### Upgrade introduced regressions
+### Search or filters behave inconsistently
 
-Compare the newly generated default files from the latest package against your previous configuration before reusing older settings wholesale.
+Review:
+
+- `filter-settings.default-filter`
+- filter IDs in `filters.yml`
+- whether recent staff changes wrote duplicate or incorrect custom item entries
+
+### Admin filter add-item fails
+
+Expected failure conditions include:
+
+- sender is not a player
+- main hand is empty
+- target filter ID does not exist
+- target filter is `all`
+- normalized `entryId` becomes blank
+
+## Upgrade Guidance
+
+Generate fresh defaults on a staging copy before rollout. Donut Orders stores both operator-edited and command-generated filter data, so upgrade diffs matter more here than with a static-only config set.

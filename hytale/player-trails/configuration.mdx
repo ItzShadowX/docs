@@ -1,20 +1,63 @@
 ---
 title: "Configuration"
-description: "Configure trail cosmetics, access rules, and performance settings for Player Trails."
+description: "Configure Player Trails world rules, pricing, categories, and permissions."
 ---
 
 # Player Trails Configuration
 
-Plan cosmetic access carefully so trails enhance the experience without overwhelming readability.
+Player Trails separates global runtime behavior from the trail catalog itself.
 
-## Recommended Configuration Areas
+## `config.yml`
 
-- Available trail definitions
-- Permission or unlock requirements
-- Display names and player-facing descriptions
-- Performance-sensitive effect settings
-- Seasonal or limited-time availability rules
+This file controls runtime-wide behavior.
 
-## Configuration Guidance
+- `default-interval`: fallback particle spawn interval
+- `view-distance`: particle visibility range
+- `enable-purchasing`
+- `show-all-category`
+- `economy-type`
+- `hycurrency-currency`
+- `price-format` and `price-display`
+- `enabled-worlds`: explicit allow-list
+- `disabled-worlds`: deny-list used when `enabled-worlds` is empty
 
-Introduce only a small number of effects initially so you can evaluate readability and performance with real player movement.
+Use this file to define how the system behaves globally before touching content.
+
+## `trails.yml`
+
+This is the content registry.
+
+### Categories
+
+Top-level `categories` define the menu tabs. The bundled set includes groups such as `emotions`, `nature`, `earth`, `minerals`, `forged`, `chroma`, `cosmic`, `elemental`, `mythical`, `auras`, `dynamics`, `wakes`, and `legendary`.
+
+### Trail entries
+
+Each trail can define:
+
+- `enabled`
+- `name`
+- `permission`
+- `interval`
+- `price`
+- `category`
+- `particles`: one or more particle definitions with offsets and scale
+
+This file is the source of truth for what players can browse, buy, equip, or receive from staff.
+
+## `messages.yml`
+
+Contains command responses, purchase messages, permission failures, and menu text.
+
+## Recommended Edit Order
+
+1. Set global interval, view distance, economy, and world rules in `config.yml`.
+2. Organize categories in `trails.yml`.
+3. Define or revise trail entries and permissions.
+4. Tune messages last.
+
+## Validation Tips
+
+- If a trail is visible but unusable, compare `enabled`, `permission`, and world restrictions.
+- If prices display incorrectly, inspect `price-format` and `price-display` before editing each trail entry.
+- If a world should allow trails but does not, check the precedence between `enabled-worlds` and `disabled-worlds`.

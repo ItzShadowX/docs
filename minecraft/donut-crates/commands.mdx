@@ -1,0 +1,108 @@
+---
+title: "Commands"
+description: "Reference for Donut Crates commands, aliases, and permission nodes."
+---
+
+# Donut Crates Commands
+
+Root aliases: `/donutcrates`, `/crates`
+
+## Core Commands
+
+### `/crates`
+
+Player-only fallback. Without a subcommand, the plugin tells the player to look at a block. Use the explicit subcommands for administration.
+
+### `/crates open <player> <crateId>`
+
+Permission: `donutcrates.command.open`
+
+Opens the specified crate menu for a target player.
+
+```text
+/crates open ShadowX common_crate
+```
+
+### `/crates assign <crateId>`
+
+Permission: `donutcrates.command.assign`
+
+Player-only. Assigns the looked-at block to a crate definition.
+
+```text
+/crates assign common_crate
+```
+
+### `/crates unassign`
+
+Permission: `donutcrates.command.unassign`
+
+Player-only. Removes the crate assignment from the looked-at block.
+
+```text
+/crates unassign
+```
+
+## Key Management
+
+### `/crates keys inspect <player> <crateId>`
+
+Permission: `donutcrates.command.keys.inspect`
+
+Reads the current key balance.
+
+### `/crates keys set <player> <crateId> <amount>`
+
+Permission: `donutcrates.command.keys.set`
+
+Sets the key balance to a non-negative amount.
+
+### `/crates keys give <player> <crateId> <amount>`
+
+Permission: `donutcrates.command.keys.give`
+
+Adds keys to the current balance.
+
+### `/crates keys take <player> <crateId> <amount>`
+
+Permission: `donutcrates.command.keys.take`
+
+Subtracts keys from the current balance, clamped at zero.
+
+### `/crates keys giveall <crateId> <amount>`
+
+Permission: `donutcrates.command.keys.giveall`
+
+Adds keys to every online player for the specified crate.
+
+## Reload
+
+### `/crates reload`
+
+Permission: `donutcrates.command.reload`
+
+Reloads plugin configuration and crate definitions.
+
+```text
+/crates reload
+```
+
+## Permissions Summary
+
+- `donutcrates.command.open`
+- `donutcrates.command.assign`
+- `donutcrates.command.unassign`
+- `donutcrates.command.keys.inspect`
+- `donutcrates.command.keys.set`
+- `donutcrates.command.keys.give`
+- `donutcrates.command.keys.take`
+- `donutcrates.command.keys.giveall`
+- `donutcrates.command.reload`
+
+All are declared with `default: op` in `plugin.yml`.
+
+## Operational Notes
+
+- `assign` and `unassign` require the sender to look at a valid block within reach.
+- Key operations run asynchronously against the repository layer, so use them for bulk updates instead of editing storage by hand.
+- `giveall` targets online players only.

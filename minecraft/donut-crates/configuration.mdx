@@ -1,20 +1,63 @@
 ---
 title: "Configuration"
-description: "Configure crates, rewards, and key flow for Donut Crates."
+description: "Configure Donut Crates storage, crate definitions, rewards, and menus."
 ---
 
 # Donut Crates Configuration
 
-Plan crate structure before editing values in production.
+Donut Crates is mostly configured by crate definition files rather than a large central config.
 
-## Focus Areas
+## `config.yml`
 
-- Crate names and categories
-- Reward tables and rarity balance
-- Key acquisition methods
-- Broadcast or animation settings
-- Economy or permission integration
+This file is intentionally small.
 
-## Configuration Guidance
+- `lang`: locale selection
+- `menu-sounds`: open, click, confirm, cancel, and invalid-action sounds
 
-Use conservative reward values in the first rollout, then tune balance after observing player behavior. Keep reward definitions small and understandable until you have real production data on open rates and perceived value.
+Use it for UX tuning, not content modeling.
+
+## `database.yml`
+
+Controls persistence for keys and assigned crate data.
+
+- `database.type`: `sqlite`, `mysql`, or `mongodb`
+- `credentials`: host, port, database, username, password, and connection parameters
+- `pool-settings`: connection pool tuning
+- `mongodb-settings`: Atlas toggle and extra parameters
+
+If you do not need networked storage, keep SQLite. Use MySQL or MongoDB only when you have a clear operational reason.
+
+## `crates/*.yml`
+
+Each file under `crates/` defines one crate type.
+
+### Common fields
+
+- `id`: crate ID and expected filename stem
+- `name`: locale key for the crate display name
+- `hologram`: enable state, offsets, and paragraph keys
+- `crate-menu`: title, row count, reward slots, filler item
+- `rewards`: one or more selectable reward items
+
+The sample `common_crate.yml` shows the intended pattern: armor trims, enchantments, reward slots, and locale-backed hologram text.
+
+## `confirm_menu.yml`
+
+Controls the confirmation UI for actions that need an explicit accept/cancel flow.
+
+## `databases/crates.yml`
+
+This is operational data, not hand-authored content. It stores assigned crate blocks. Do not edit it during live operation unless you are repairing broken assignments offline.
+
+## Recommended Edit Order
+
+1. Decide the storage engine in `database.yml`.
+2. Create or revise crate files in `crates/`.
+3. Tune hologram and menu presentation.
+4. Only then adjust sounds and messages.
+
+## Validation Tips
+
+- After editing a crate file, use `/crates open` before assigning real world blocks.
+- Keep crate IDs stable once keys and assignments are in use.
+- If holograms look wrong, check the backend plugin before changing offsets.

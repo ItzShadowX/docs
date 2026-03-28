@@ -1,20 +1,91 @@
 ---
 title: "Configuration"
-description: "Configure catalog structure, pricing, and visibility for Hytale Shop."
+description: "Configure Hytale Shop economy defaults, tabs, additional shops, stock, and sell flow."
 ---
 
 # Hytale Shop Configuration
 
-Prepare a catalog structure that is easy for players to understand.
+Hytale Shop separates global defaults from shop content. Configure the global layer first, then the default shop, then any additional shops.
 
-## Key Areas To Define
+## `config.yml`
 
-- Categories and product grouping
-- Pricing values and balance strategy
-- Visibility rules or progression requirements
-- Text and presentation settings
-- Storage or economy-related integrations if provided by the package
+Global behavior lives here.
 
-## Configuration Guidance
+- `economy-type`: default economy provider
+- `hycurrency-currency`: named HyCurrency override
+- `enable-buying` and `enable-selling`
+- `decimal-format`, `price-format`, and `trade-price-format`
+- `default-trade-ui`: `STEPPER`, `CONFIRM`, `INPUT`, or `SLIDER`
+- `max-trade-quantity`
 
-Prefer stable naming and category structure early. Large structural changes after launch are harder for players to interpret.
+This file defines the inheritance baseline used by shops, tabs, and items.
+
+## `database.yml`
+
+Storage layer for shop state.
+
+- `type`: `sqlite` or `mysql`
+- `sqlite.file`: on-disk database path
+- `mysql`: host, port, database, username, password
+- `pool`: connection pool sizing and timeouts
+
+## `shop.yml`
+
+The default shop definition.
+
+### Key sections
+
+- `default-tab`
+- `name`
+- optional shop-wide `economy` override
+- optional `max-trade-quantity`
+- optional `rotation` settings
+- `tabs`: tab display names, icons, visibility, permissions, economy overrides, and rotation overrides
+- `items`: item IDs, quantities, buy/sell prices, permissions, economy overrides, buy/sell commands, stock, and sell-command conditions
+
+Use `shop.yml` for the primary `/shop` experience.
+
+## `shops/*.yml`
+
+These files define additional shops. Each one can expose:
+
+- its own command name and aliases
+- enabled or disabled state
+- permission requirements
+- shop-specific names, tabs, items, and economy overrides
+
+The bundled examples include `alchemy.yml`, `bazaar.yml`, `blackmarket.yml`, `blacksmith.yml`, `builder.yml`, `kitchen.yml`, and `store.yml`.
+
+## `stock.yml`
+
+Global stock defaults.
+
+- master `enabled` flag
+- default `max-stock`
+- `restock-interval`
+- `restock-amount`
+- `sell-replenishes`
+- `per-player-limit`
+
+Per-item stock still lives in shop definitions; this file sets the fallback behavior.
+
+## Other Files
+
+- `sell-items.yml`: controls sellable item definitions
+- `messages.yml`: message templates
+- `ui.yml`: UI-specific configuration and presentation
+
+## Recommended Edit Order
+
+1. Set global economy and trade defaults in `config.yml`.
+2. Configure persistence in `database.yml`.
+3. Build the default shop in `shop.yml`.
+4. Add or revise `shops/*.yml` for extra command-driven shops.
+5. Enable and tune stock behavior in `stock.yml`.
+6. Polish messages and UI text last.
+
+## Validation Tips
+
+- If an additional shop command registers but opens nothing, inspect that shop's enabled flag and definition file.
+- If sell actions fail but buy actions work, compare `sell-items.yml`, `enable-selling`, and any item-level sell permissions.
+- If stock numbers feel wrong, inspect both `stock.yml` defaults and the specific item entry in the relevant shop file.

@@ -1,0 +1,88 @@
+---
+title: "Commands"
+description: "Reference for Donut Bounty player and admin commands."
+---
+
+# Donut Bounty Commands
+
+## Player Commands
+
+### `/bounty`
+
+Aliases: `/bounties`
+
+Opens the bounty browser.
+
+```text
+/bounty
+```
+
+### `/bounty <search>`
+
+Aliases: `/bounties <search>`
+
+Opens the bounty browser with a search query applied.
+
+```text
+/bounty ShadowX
+```
+
+### `/bounty place <player> <amount>`
+
+Aliases: `/bounties place <player> <amount>`
+
+Starts the bounty placement confirmation flow for the target player.
+
+```text
+/bounty place ShadowX 5000
+```
+
+## Admin Commands
+
+### `/bountyadmin`
+
+Permission: `donutbounty.admin`
+
+Player-only default action. Opens the bounty menu for the executing staff member.
+
+### `/bountyadmin reload`
+
+Permission: `donutbounty.admin`
+
+Reloads configuration and locale content.
+
+### `/bountyadmin set <player> <amount>`
+
+Permission: `donutbounty.admin`
+
+Sets a player's bounty to an exact value.
+
+### `/bountyadmin add <player> <amount>`
+
+Permission: `donutbounty.admin`
+
+Adds to the player's current bounty.
+
+### `/bountyadmin remove <player> <amount>`
+
+Permission: `donutbounty.admin`
+
+Subtracts from the player's current bounty.
+
+### `/bountyadmin reset`
+
+Permission: `donutbounty.admin`
+
+Resets all bounties.
+
+## Permissions
+
+- `donutbounty.admin`: grants all `bountyadmin` actions
+
+Declared in `plugin.yml` with `default: op`.
+
+## Operational Notes
+
+- `/bounty` opens a GUI and is player-only.
+- `/bountyadmin` default behavior is also player-only, but the non-default subcommands use `CommandSender` and can be run from console.
+- The amount parser rejects zero or negative values for player placement and add/remove actions.

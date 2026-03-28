@@ -1,32 +1,59 @@
 ---
 title: "Operations"
-description: "Operate, validate, and troubleshoot Donut Crates."
+description: "Operate Donut Crates in production and troubleshoot key, reward, and assignment issues."
 ---
 
 # Donut Crates Operations
 
-## Usage and Operations
+## Standard Admin Workflow
 
-1. Create a small internal test crate first.
-2. Issue test keys to staff accounts.
-3. Open crates in a staging environment and verify rewards resolve correctly.
-4. Confirm rare rewards, duplicate handling, and edge-case outcomes.
-5. Move the final crate definitions to production once the reward pool is validated.
+1. Verify the plugin enabled and loaded all crate definitions.
+2. Test `/crates open` on a staff account.
+3. Inspect a player's keys before and after a grant.
+4. Assign a real crate block and confirm the correct menu opens from interaction.
+5. If holograms are enabled, verify placement and formatting in-world.
+
+## Safe Live Changes
+
+- Reward list edits: reloadable, but test the crate immediately afterward
+- Hologram text changes: reloadable if your hologram backend is healthy
+- Storage backend migration: maintenance window only
+- Manual edits to assignment data: offline only
 
 ## Troubleshooting
 
-### Crates open but rewards fail
+### Crate opens but reward behavior is wrong
 
-Check for:
+Check:
 
-- Invalid reward syntax in configuration
-- Missing item definitions or dependent plugins
-- Permissions blocking the final action
+- the crate ID and filename still match
+- reward materials and enchants use valid Paper names
+- the reward slots in `crate-menu.items.reward.slots` fit the configured row count
 
-### Keys are not recognized
+### Keys are missing or not updating
 
-Verify key identifiers, matching crate names, and any permission or metadata requirements used by the plugin.
+Check:
 
-### Reward balance feels off
+- the active database backend and credentials
+- that you are editing the correct `crateId`
+- whether a previous migration left stale data in a different backend
 
-Audit reward weights and remove extreme-value items until you have real usage data from production players.
+### Assigned blocks stop working
+
+Check:
+
+- `databases/crates.yml` or the configured backend for the stored block mapping
+- that the block still exists in the world
+- whether the crate definition referenced by that assignment still exists
+
+### Holograms do not appear
+
+Check:
+
+- whether `hologram.enabled` is true for the crate
+- whether `DecentHolograms` or `FancyHolograms` is installed and enabled
+- paragraph keys in `locale/en.yml`
+
+## Upgrade Guidance
+
+Treat crate definitions and assignment data separately. Crate files are content; assignment data is runtime state. Back up both before upgrades.

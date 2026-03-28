@@ -1,28 +1,55 @@
 ---
 title: "Operations"
-description: "Operate, validate, and troubleshoot Hytale Shop."
+description: "Operate Hytale Shop in production and troubleshoot trade, stock, and shop registration issues."
 ---
 
 # Hytale Shop Operations
 
-## Admin Usage
+## Standard Operator Workflow
 
-1. Validate the catalog in a test environment.
-2. Confirm item availability and pricing are correct.
-3. Test successful and failed purchase flows.
-4. Review any logs or audit records created by the plugin.
-5. Release to production once both balance and purchase integrity are confirmed.
+1. Confirm `/shop` and `/sell` register at startup.
+2. Open the default shop and one additional shop.
+3. Complete one buy flow and one sell flow.
+4. If stock is enabled, confirm stock changes after the trade.
+5. If the editor is enabled for staff, open `/shop editor` and validate it loads cleanly.
+
+## Safe Live Changes
+
+- Price and item list edits: reloadable
+- Additional shop definition edits: reloadable
+- Stock tuning: reloadable, but validate affected items immediately
+- Database backend swaps: maintenance window only
+- Asset-pack or patchline-sensitive changes: restart and retest recommended
 
 ## Troubleshooting
 
-### Catalog does not appear correctly
+### `/shop` works but an additional shop command fails
 
-Check for malformed configuration, missing content definitions, or version mismatches between plugin files and server runtime.
+Check:
 
-### Purchases are inconsistent
+- the additional shop file exists in `shops/`
+- the shop is enabled
+- the generated command name does not collide with another root command
+- permission checks in that shop config
 
-Validate pricing definitions, item mappings, and any prerequisite progression or permission checks.
+### Buy or sell actions are inconsistent
 
-### Upgrade changed behavior
+Check:
 
-Rebuild from the newest defaults first, then merge only the custom settings you still need.
+- `enable-buying` and `enable-selling`
+- inherited economy settings at global, shop, tab, and item levels
+- item-level buy and sell permissions
+- any configured buy or sell command hooks and sell-command conditions
+
+### Stock values look wrong
+
+Check:
+
+- whether global stock is enabled in `stock.yml`
+- item-level stock overrides in the active shop file
+- whether `sell-replenishes` is expected to be on
+- rotation settings that may be swapping visible inventory
+
+### Reload changes behavior unexpectedly
+
+Because Hytale Shop supports inheritance across multiple config layers, compare the global `config.yml` values against the specific shop or item file you changed. A reload issue is often an inheritance issue rather than a parser issue.

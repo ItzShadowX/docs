@@ -1,20 +1,62 @@
 ---
 title: "Configuration"
-description: "Configure listings, prices, and access rules for Donut Shops."
+description: "Configure Donut Shops categories, menus, currencies, and purchase behavior."
 ---
 
 # Donut Shops Configuration
 
-Structure the shop around clear categories and predictable player expectations.
+Donut Shops is configured entirely through YAML content files.
 
-## Review Areas
+## `config.yml`
 
-- Product categories and listing order
-- Buy and sell pricing
-- Economy provider integration
-- Display names, descriptions, and messages
-- Access restrictions based on permissions or progression
+Main behavior settings live here.
 
-## Configuration Guidance
+- `lang`: locale selection
+- `currency.type`: `vault`, `player_points`, `coins_engine`, or `custom`
+- `shop-settings.max-purchase-amount`: purchase cap per transaction
+- `shop-settings.close-on-purchase`: whether the confirm UI closes after success
+- `menu-sounds`: open, click, value-change, confirm, cancel, and invalid-action sounds
 
-Avoid shipping a large catalog on day one. Start with a narrow set of listings, then expand after verifying economic balance and player behavior.
+Choose the currency mode first. Everything else depends on that decision.
+
+## `menus/shop_menu.yml`
+
+This file controls the root menu.
+
+- `menu-title` and `menu-rows`: inventory shell
+- `items.open-category.shops`: map display slots to category IDs
+- `items.filler`: optional background fill
+
+The `id` under each category launcher must match a file in `categories/`.
+
+## `categories/*.yml`
+
+Each category file defines one purchasable catalog.
+
+### Common fields
+
+- `id`: expected filename stem
+- `name`: display name, supports MiniMessage-style formatting
+- `icon`: menu icon and lore shown in the root shop
+- `products`: item material, display name, and cost
+- `category-menu`: title, row count, product slots, and back button
+
+The bundled `end_category.yml` is the model for additional categories.
+
+## `menus/confirm_menu.yml`
+
+This file controls the purchase confirmation screen. Review it after category and pricing changes so the UI still matches your transaction flow.
+
+## Recommended Edit Order
+
+1. Set `currency.type` and purchase rules in `config.yml`.
+2. Create or revise category files.
+3. Wire categories into `menus/shop_menu.yml`.
+4. Tune confirm and UX details.
+5. Localize messages last.
+
+## Validation Tips
+
+- If a category icon appears but does nothing, the category ID mapping is wrong.
+- If prices display but purchases fail, inspect the currency backend before changing the category file.
+- Keep category IDs stable once staff are trained on them and documentation references them.

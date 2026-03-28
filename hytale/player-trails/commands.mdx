@@ -1,0 +1,77 @@
+---
+title: "Commands"
+description: "Reference for Player Trails commands, active subcommands, and dormant source-defined commands."
+---
+
+# Player Trails Commands
+
+Root aliases: `/trails`, `/trail`, `/primaxtrails`, `/playertrails`
+
+## Active Commands
+
+### `/trails`
+
+Opens the main trails menu for the executing player.
+
+### `/trails open <player>`
+
+Opens the trails menu for a target player.
+
+```text
+/trails open ShadowX
+```
+
+### `/trails search <query>`
+
+Opens the trails menu with the search term pre-applied.
+
+```text
+/trails search cosmic
+```
+
+### `/trails give <player> <trailId>`
+
+Grants the specified trail to a player through the configured permission provider.
+
+```text
+/trails give ShadowX alerted_pulse
+```
+
+### `/trails take <player> <trailId>`
+
+Aliases: `/trails revoke`, `/trails remove`
+
+Revokes the specified trail from a player and stops it immediately if it is active.
+
+```text
+/trails take ShadowX alerted_pulse
+```
+
+### `/trails editor`
+
+Opens the in-game trail editor for the executing player.
+
+### `/trails reload`
+
+Reloads config, reinitializes the permission manager, and reloads the selected economy provider.
+
+```text
+/trails reload
+```
+
+## Commands Present In Source But Not Currently Registered
+
+The source tree contains additional command classes, but `TrailCommand` currently comments them out and does not register them:
+
+- `/trails equip <trailId>`
+- `/trails unequip`
+- `/trails preview <trailId>`
+- `/trails purchase <trailId>`
+
+Document them as dormant implementation paths, not as active production commands.
+
+## Operational Notes
+
+- `/trails` and its UI-opening subcommands are player-oriented.
+- `open`, `give`, and `take` are implemented as non-player-only commands and can target other players.
+- `reload` also refreshes permission and economy integration, not just YAML files.

@@ -1,0 +1,50 @@
+---
+title: "Configuration"
+description: "Configure Donut Bounty menus, minimums, search flow, and storage."
+---
+
+# Donut Bounty Configuration
+
+Donut Bounty uses a compact config set. Most rollout decisions live in `config.yml`.
+
+## `config.yml`
+
+### Core sections
+
+- `lang`: locale selection
+- `currency.type`: `vault`, `player_points`, `coins_engine`, or `custom_currency`
+- `menu-settings.page-size`: number of bounties shown per page
+- `menu-settings.minimum-bounty`: lowest allowed bounty placement
+- `menu-settings.bounties-layout`: main browser layout
+- `menu-settings.confirm-layout`: confirmation view layout
+- `search-settings`: sign material, sign color, and input line index
+- `sorting-settings.default-sorting`: `amount` or `recently_set`
+- `menu-sounds`: open, click, page-change, confirm, invalid input, and sign completion sounds
+
+## `database.yml`
+
+Controls persistence.
+
+- `database.type`: `sqlite` or `mysql`
+- `credentials`: host, port, database, username, password, and JDBC parameters
+- `pool-settings`: connection pool sizing and timeout settings
+
+Use SQLite for a single server. Use MySQL if you need centralized infrastructure or easier backups.
+
+## `locale/en.yml`
+
+Contains player-facing and staff-facing messages, including validation failures for amount parsing, missing players, and admin responses.
+
+## Recommended Edit Order
+
+1. Choose the currency mode.
+2. Set the minimum bounty and menu page size.
+3. Configure the database backend.
+4. Adjust search and sorting behavior.
+5. Tune layouts and sounds.
+
+## Validation Tips
+
+- Test `/bounty place <player> <amount>` after changing the minimum amount.
+- If search input feels broken, confirm the configured sign line matches your UI expectation.
+- If admin changes vanish after restart, the issue is in `database.yml`, not the menu config.

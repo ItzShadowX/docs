@@ -1,0 +1,52 @@
+---
+title: "Operations"
+description: "Operate Donut Bounty in production and troubleshoot bounty persistence and search issues."
+---
+
+# Donut Bounty Operations
+
+## Standard Admin Workflow
+
+1. Confirm the plugin enabled and loaded the selected economy backend.
+2. Open `/bounty` as a player.
+3. Place a small test bounty and confirm the minimum is enforced.
+4. Adjust a player's bounty with `/bountyadmin set` or `/bountyadmin add`.
+5. Restart the server and verify the value persisted.
+
+## Safe Live Changes
+
+- Layout and sound edits: reloadable
+- Minimum bounty changes: reloadable, but retest placement immediately
+- Database backend changes: maintenance window only
+- Currency backend changes: restart and full flow retest recommended
+
+## Troubleshooting
+
+### Bounties are not saving
+
+Check:
+
+- `database.yml` backend selection and credentials
+- filesystem write access for SQLite
+- whether staff changed values in a different environment than the one being tested
+
+### Players cannot place bounties
+
+Check:
+
+- `menu-settings.minimum-bounty`
+- the configured currency backend
+- amount input formatting used by staff and players
+- that the target player can be resolved by the plugin's known-player lookup
+
+### Search or sorting feels wrong
+
+Check:
+
+- `sorting-settings.default-sorting`
+- `search-settings.sign-material`, `sign-color`, and `sign-input-slot`
+- whether staff expect live search behavior that the sign prompt does not provide
+
+### Admin reset was run accidentally
+
+The command resets all bounty data. Treat it like a high-impact admin action and restrict `donutbounty.admin` accordingly.
