@@ -1,0 +1,95 @@
+.mdx-content table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(120, 53, 15, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 251, 245, 0.96);
+}
+
+.dark .mdx-content table {
+  border-color: rgba(251, 146, 60, 0.12);
+  background: rgba(28, 18, 10, 0.9);
+}
+
+.mdx-content thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(120, 53, 15, 0.1);
+  background: rgba(255, 247, 237, 0.98);
+  color: rgba(120, 53, 15, 0.76);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.dark .mdx-content thead th {
+  border-bottom-color: rgba(251, 146, 60, 0.12);
+  background: rgba(36, 24, 14, 0.98);
+  color: rgba(254, 215, 170, 0.76);
+}
+
+.mdx-content tbody td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(120, 53, 15, 0.08);
+  color: inherit;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.dark .mdx-content tbody td {
+  border-bottom-color: rgba(251, 146, 60, 0.1);
+}
+
+.mdx-content tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.mdx-content tbody tr:nth-child(even) td {
+  background: rgba(255, 247, 237, 0.72);
+}
+
+.dark .mdx-content tbody tr:nth-child(even) td {
+  background: rgba(42, 28, 17, 0.72);
+}
+
+.mdx-content tbody tr:hover td {
+  background: rgba(255, 243, 224, 1);
+}
+
+.dark .mdx-content tbody tr:hover td {
+  background: rgba(52, 34, 19, 0.96);
+}
+
+.mdx-content tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.mdx-content :is(th, td):not(:last-child) {
+  border-right: 1px solid rgba(120, 53, 15, 0.06);
+}
+
+.dark .mdx-content :is(th, td):not(:last-child) {
+  border-right-color: rgba(251, 146, 60, 0.08);
+}
+
+@media (max-width: 768px) {
+  .mdx-content table {
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+
+  .mdx-content thead th,
+  .mdx-content tbody td {
+    min-width: 10.5rem;
+    padding: 0.8rem 0.9rem;
+  }
+}
