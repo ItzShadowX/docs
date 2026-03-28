@@ -10,12 +10,12 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Minecraft",
         "groups": [
           {
             "group": "Overview",
             "pages": [
-              "index"
+              "minecraft/index"
             ]
           },
           {
@@ -48,6 +48,17 @@
                   "minecraft/donut-shops/operations"
                 ]
               }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Hytale",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "hytale/index"
             ]
           },
           {
